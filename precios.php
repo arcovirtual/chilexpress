@@ -367,19 +367,20 @@ function chilexpress_obtener_valores($comunaOrigen, $comunaDestino, $peso, $dime
 |YUMBEL;YUMB
  */
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
-$origen=$_POST['origen'];
-$destino=$_POST['destino'];
-$kilos=$_POST['kilos'];
+//usando los mismos  name del form web del sitio web cotizador para traspasar la info
+$origen=$_POST['cmb_lst_origen'];
+$destino=$_POST['cmb_lst_destino'];
+$kilos=$_POST['peso'];
 $dimensiones=$_POST['dimensiones'];
 $dim = explode(",", $dimensiones);
 
 $array = (chilexpress_obtener_valores($origen, $destino, $kilos, $dim));
 
-foreach ($array as $k => $v) {
+if(isset($array)){ //AQUI activamos
+	foreach ($array as $k => $v) {
     ?>
 		<input type="radio" name="valor" value="<?php echo $k.'/'. $v; ?>"> <?php echo $k.'/'.$v ?><br>
   		
     <?php
-}
+}}//añadimos un } adicional del if
 ?>
